@@ -1,5 +1,14 @@
-# Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
-
 en:
-  hello: "Hello world"
+  spree:
+    listing_news_items: "Listing News Items"
+    new_news_item: "New News Item"
+    news_items: "News Items"
+    back_to_news_items_list: "Back to List"
+    news_item:
+      title: "Title"
+      url: "Link URL"
+      category: "Category"
+      content: "Content"
+      enabled: "Enabled"
+      show_only_enabled: "Show only enabled"
+
