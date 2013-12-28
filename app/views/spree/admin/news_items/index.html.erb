@@ -1,0 +1,100 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_news_items) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <div class="toolbar" data-hook="toolbar">
+    <ul class="actions header-action-links inline-menu">
+      <li id="new_news_item_link">
+        <%= button_link_to Spree.t(:new_news_item), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_news_item' } %>
+      </li>
+    </ul>
+  </div>
+<% end %>
+
+<% content_for :table_filter_title do %>
+  <%= Spree.t(:search) %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div data-hook="admin_news_items_index_search">
+    <%= search_form_for [:admin, @search] do |f| %>
+      <div class="field-block alpha eight columns">
+        <div class="field">
+          <%= label_tag nil, Spree.t('news_item.title') %>
+          <%= f.text_field :title_cont, :size => 15 %>
+        </div>
+        <div class="field">
+          <%= label_tag nil, Spree.t('news_item.url') %>
+          <%= f.text_field :url_cont, :size => 15 %>
+        </div>
+      </div>
+
+      <div class="four columns omega">
+        <div class="field">
+          <%= label_tag nil, Spree.t('news_item.category') %>
+          <%= f.select :category_eq, Spree::NewsItem.categories_for_select, {:include_blank => true}, {:class => 'select2 fullwidth'} %>
+        </div>
+        <div class="field checkbox">
+          <label>
+            <%= f.check_box :enabled_true %>
+            <%= Spree.t('news_item.show_only_enabled') %>
+          </label>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="form-buttons actions filter-actions" data-hook="admin_news_items_index_search_buttons">
+          <%= button Spree.t(:search), 'icon-search' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div id="new_news_item" data-hook></div>
+
+<% if @collection.any? %>
+<table class="index sortable" data-hook="admin_news_items_table" data-sortable-link="<%= update_positions_admin_news_items_url() %>">
+  <colgroup>
+  <col style="width: 5%">
+  <col style="width: 15%;">
+  <col style="width: 10%;">
+  <col style="width: 10%;">
+  <col style="width: 17%;">
+</colgroup>
+<thead>
+  <tr data-hook="admin_news_items_header">
+    <th colspan="2"><%= Spree.t('news_item.title') %></th>
+    <th><%= Spree.t('news_item.category') %></th>
+    <th><%= Spree.t('news_item.url') %></th>
+    <th data-hook="admin_news_items_header_actions" class="actions"></th>
+  </tr>
+</thead>
+<tbody>
+  <% @collection.each do |news_item| %>
+  <tr id="<%= spree_dom_id news_item %>" data-hook="admin_news_items_row" class="<%= cycle('odd', 'even') %>">
+    <td class="no-border">
+      <span class="handle"></span>
+    </td>
+    <td class="align-center"><%= news_item.title rescue '' %></td>
+    <td class="align-center"><%= news_item.category rescue '' %></td>
+    <td class="align-center"><%= news_item.url rescue '' %></td>
+    <td class="actions" data-hook="admin_news_item_index_row_actions">
+      <%= link_to_edit news_item, :no_text => true, :class => 'edit' %>
+      &nbsp;
+      <%= link_to_delete news_item, :no_text => true %>
+    </td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+<% else %>
+<div class="no-objects-found">
+  <%= Spree.t(:no_results) %>
+</div>
+<% end %>
+
+<%= paginate @collection %>
+
+

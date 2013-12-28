@@ -1,0 +1,2 @@
+$("#new_news_item").html('<%= escape_javascript(render :template => "spree/admin/news_items/new", :formats => [:html], :handlers => [:erb]) %>');
+$("#admin_new_news_item").parent().hide();

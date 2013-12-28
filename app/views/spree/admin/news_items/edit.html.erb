@@ -1,0 +1,15 @@
+<% content_for :page_actions do %>
+  <li><%= button_link_to Spree.t(:back_to_news_items_list), admin_news_items_url, :icon => 'icon-arrow-left' %></li>
+  <li id="new_news_item_link">
+    <%= button_link_to Spree.t(:new_news_item), new_object_url, { :icon => 'icon-plus', :id => 'admin_new_news_item' } %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @news_item } %>
+
+<%= form_for [:admin, @news_item], :method => :put do |f| %>
+  <fieldset class="no-border-top">
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

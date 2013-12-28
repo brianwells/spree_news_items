@@ -1,0 +1,37 @@
+<div data-hook="admin_news_item_form_fields" class="row">
+  <div class="left eight columns alpha" data-hook="admin_news_item_form_left">
+    <%= f.field_container :title do %>
+      <%= f.label :title, raw(Spree.t('news_item.title') + content_tag(:span, ' *', :class => 'required')) %>
+      <%= f.text_field :title, :class => 'fullwidth title' %>
+      <%= f.error_message_on :title %>
+    <% end %>
+    <%= f.field_container :category do %>
+      <%= f.label :category, raw(Spree.t('news_item.category') + content_tag(:span, ' *', :class => 'required')) %>
+      <%= f.text_field :category, :class => 'fullwidth title' %>
+      <%= f.error_message_on :category %>
+    <% end %>
+    <%= f.field_container :url do %>
+      <%= f.label :url, raw(Spree.t('news_item.url')) %>
+      <%= f.text_field :url, :class => 'fullwidth title' %>
+      <%= f.error_message_on :url %>
+    <% end %>
+  </div>
+  <div class="right eight columns omega" data-hook="admin_news_item_form_right">
+    <%= f.field_container :content do %>
+      <%= f.label :content, Spree.t('news_item.content') %>
+      <%= f.text_area :content, {:rows => 5, :class => 'fullwidth'} %>
+      <%= f.error_message_on :content %>
+    <% end %>
+    <%= f.field_container :enabled do %>
+      <%= f.label :enabled, Spree.t('news_item.enabled') %><br />
+      <%= f.check_box :enabled %>
+      <%= f.error_message_on :enabled %>
+    <% end %>
+  </div>
+
+  <div class="clear"></div>
+
+  <div data-hook="admin_news_item_form_additional_fields"></div>
+
+  <div class="clear"></div>
+</div>
