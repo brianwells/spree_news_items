@@ -2,7 +2,7 @@ en:
   spree:
     listing_news_items: "Listing News Items"
     new_news_item: "New News Item"
-    news_items: "News Items"
+    news: "News"
     back_to_news_items_list: "Back to List"
     news_item:
       title: "Title"
